@@ -1,0 +1,48 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+             http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd  
+			 http://www.springframework.org/schema/jee  http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
+      		 http://www.springframework.org/schema/mvc  http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+ 			 http://www.springframework.org/schema/util   http://www.springframework.org/schema/util/spring-util-4.1.xsd
+ 			 http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<!-- load config file -->
+	<context:property-placeholder location="classpath:System.properties" />
+
+	<!-- annotation support,this is required. -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+						<value>application/json</value>
+					</list>
+				</property>
+				<property name="features">
+					<list>
+						<value>WriteNullListAsEmpty</value>
+						<value>QuoteFieldNames</value>
+						<value>PrettyFormat</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+		<mvc:path-matching registered-suffixes-only="true" />
+	</mvc:annotation-driven>
+
+	<!-- annotation auto scan,this is required -->
+	<context:component-scan base-package="com.bestedg">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+	
+</beans>
+
+
+

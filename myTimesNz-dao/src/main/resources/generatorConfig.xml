@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <classPathEntry
+            location="E:\workspeace\myTimesNz\myTimesNz-dao\src\main\resources\mysql-connector-java-5.1.24-bin.jar"/>
+
+    <context id="MysqlTables" targetRuntime="MyBatis3">
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.0.101:3306/oranplanet3?characterEncoding=UTF8"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.bestedg.myTimesNz.db.tdb.entity" targetProject="src/main/java">
+
+            <property name="enableSubPackages" value="false"/>
+            <property name="immutable" value="false"/>
+
+            <property name="trimStrings" value="true"/>
+
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.bestedg.myTimesNz.db.tdb.dao.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.bestedg.myTimesNz.db.tdb.dao" targetProject="src/main/java" type="XMLMAPPER" >
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <table schema="oranplanet"
+               tableName="t_district_dictionary"
+               domainObjectName="TDistrictDictionary"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+               
+               
+               
+               
+        <table schema="oranplanet"
+               tableName="t_guide_order_process"
+               domainObjectName="TGuideOrderProcess"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+               
+                               
+        <table schema="oranplanet"
+               tableName="t_server"
+               domainObjectName="TServer"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+               
+                              
+        <table schema="oranplanet"
+               tableName="t_guider"
+               domainObjectName="TGuider"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <property name="rootClass" value="com.bestedg.myTimesNz.db.tdb.entity.TServer"/>
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+               
+               
+        <table schema="oranplanet"
+               tableName="t_guide_order_requirement"
+               domainObjectName="TGuideOrderRequirement"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+               
+         <table schema="oranplanet"
+               tableName="t_hours"
+               domainObjectName="THours"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+               
+         <table schema="oranplanet"
+               tableName="t_manager"
+               domainObjectName="TManager"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+               
+        <table schema="oranplanet"
+               tableName="t_order_basic"
+               domainObjectName="TOrderBasic"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+               
+        <table schema="oranplanet"
+               tableName="t_order_log"
+               domainObjectName="TOrderLog"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+               
+        <table schema="oranplanet"
+               tableName="t_permission"
+               domainObjectName="TPermission"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+        
+        <table schema="oranplanet"
+               tableName="t_product"
+               domainObjectName="TProduct"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+              
+        <table schema="oranplanet"
+               tableName="t_role"
+               domainObjectName="TRole"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+              
+        <table schema="oranplanet"
+               tableName="t_role_has_t_permission"
+               domainObjectName="TRoleHasTPermission"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false"></table>   
+              
+        <table schema="oranplanet"
+               tableName="t_service_items"
+               domainObjectName="TServiceItems"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+              
+        <table schema="oranplanet"
+               tableName="t_service_items_has_t_guide_order_requirement"
+               domainObjectName="TServiceItemsHasTGuideOrderRequirement"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false"></table>   
+              
+        <table schema="oranplanet"
+               tableName="t_service_items_has_t_guider"
+               domainObjectName="TServiceItemsHasTGuider"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false"></table>
+               
+        <table schema="oranplanet"
+               tableName="t_user_basic"
+               domainObjectName="TUserBasic"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+        
+        <table schema="oranplanet"
+               tableName="t_content"
+               domainObjectName="TContent"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+               
+        <table schema="oranplanet"
+               tableName="t_notification_content"
+               domainObjectName="TNotificationContent"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="true"
+               enableUpdateByExample="false">
+               <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+               </table>
+    </context>
+
+</generatorConfiguration>

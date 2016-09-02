@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestedg.myTimesNz.db.tdb.dao.TOrderBasicMapper" >
+  <resultMap id="BaseResultMap" type="com.bestedg.myTimesNz.db.tdb.entity.TOrderBasic" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sn" property="sn" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_phone_number" property="userPhoneNumber" jdbcType="VARCHAR" />
+    <result column="total_price" property="totalPrice" jdbcType="DECIMAL" />
+    <result column="server_price" property="serverPrice" jdbcType="INTEGER" />
+    <result column="remakrs" property="remakrs" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="TINYINT" />
+    <result column="basic_user_id" property="basicUserId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
+    <result column="create_manager_id" property="createManagerId" jdbcType="INTEGER" />
+    <result column="update_manager_id" property="updateManagerId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, sn, user_name, user_phone_number, total_price, server_price, remakrs, type, trade_no, 
+    pay_type, basic_user_id, create_time, update_time, is_delete, create_manager_id, 
+    update_manager_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TOrderBasicExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_order_basic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_basic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_order_basic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TOrderBasic" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_order_basic (sn, user_name, user_phone_number, 
+      total_price, server_price, remakrs, 
+      type, trade_no, pay_type, 
+      basic_user_id, create_time, update_time, 
+      is_delete, create_manager_id, update_manager_id
+      )
+    values (#{sn,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPhoneNumber,jdbcType=VARCHAR}, 
+      #{totalPrice,jdbcType=DECIMAL}, #{serverPrice,jdbcType=INTEGER}, #{remakrs,jdbcType=VARCHAR}, 
+      #{type,jdbcType=TINYINT}, #{tradeNo,jdbcType=VARCHAR}, #{payType,jdbcType=TINYINT}, 
+      #{basicUserId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=TINYINT}, #{createManagerId,jdbcType=INTEGER}, #{updateManagerId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TOrderBasic" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_order_basic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPhoneNumber != null" >
+        user_phone_number,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="serverPrice != null" >
+        server_price,
+      </if>
+      <if test="remakrs != null" >
+        remakrs,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="basicUserId != null" >
+        basic_user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="createManagerId != null" >
+        create_manager_id,
+      </if>
+      <if test="updateManagerId != null" >
+        update_manager_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhoneNumber != null" >
+        #{userPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="serverPrice != null" >
+        #{serverPrice,jdbcType=INTEGER},
+      </if>
+      <if test="remakrs != null" >
+        #{remakrs,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="basicUserId != null" >
+        #{basicUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createManagerId != null" >
+        #{createManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="updateManagerId != null" >
+        #{updateManagerId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TOrderBasic" >
+    update t_order_basic
+    <set >
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhoneNumber != null" >
+        user_phone_number = #{userPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="serverPrice != null" >
+        server_price = #{serverPrice,jdbcType=INTEGER},
+      </if>
+      <if test="remakrs != null" >
+        remakrs = #{remakrs,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="basicUserId != null" >
+        basic_user_id = #{basicUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createManagerId != null" >
+        create_manager_id = #{createManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="updateManagerId != null" >
+        update_manager_id = #{updateManagerId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TOrderBasic" >
+    update t_order_basic
+    set sn = #{sn,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_phone_number = #{userPhoneNumber,jdbcType=VARCHAR},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      server_price = #{serverPrice,jdbcType=INTEGER},
+      remakrs = #{remakrs,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=TINYINT},
+      basic_user_id = #{basicUserId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_manager_id = #{createManagerId,jdbcType=INTEGER},
+      update_manager_id = #{updateManagerId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

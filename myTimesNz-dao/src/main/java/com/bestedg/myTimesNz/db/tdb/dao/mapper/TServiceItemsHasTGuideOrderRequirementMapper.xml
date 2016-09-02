@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestedg.myTimesNz.db.tdb.dao.TServiceItemsHasTGuideOrderRequirementMapper" >
+  <resultMap id="BaseResultMap" type="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuideOrderRequirement" >
+    <id column="service_items_id" property="serviceItemsId" jdbcType="INTEGER" />
+    <id column="guide_order_requirement_id" property="guideOrderRequirementId" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_manager_id" property="createManagerId" jdbcType="INTEGER" />
+    <result column="update_manager_id" property="updateManagerId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    service_items_id, guide_order_requirement_id, is_delete, update_time, create_time, 
+    create_manager_id, update_manager_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuideOrderRequirementExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_service_items_has_t_guide_order_requirement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuideOrderRequirementKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_service_items_has_t_guide_order_requirement
+    where service_items_id = #{serviceItemsId,jdbcType=INTEGER}
+      and guide_order_requirement_id = #{guideOrderRequirementId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuideOrderRequirementKey" >
+    delete from t_service_items_has_t_guide_order_requirement
+    where service_items_id = #{serviceItemsId,jdbcType=INTEGER}
+      and guide_order_requirement_id = #{guideOrderRequirementId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuideOrderRequirement" >
+    insert into t_service_items_has_t_guide_order_requirement (service_items_id, guide_order_requirement_id, 
+      is_delete, update_time, create_time, 
+      create_manager_id, update_manager_id)
+    values (#{serviceItemsId,jdbcType=INTEGER}, #{guideOrderRequirementId,jdbcType=INTEGER}, 
+      #{isDelete,jdbcType=TINYINT}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createManagerId,jdbcType=INTEGER}, #{updateManagerId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuideOrderRequirement" >
+    insert into t_service_items_has_t_guide_order_requirement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serviceItemsId != null" >
+        service_items_id,
+      </if>
+      <if test="guideOrderRequirementId != null" >
+        guide_order_requirement_id,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createManagerId != null" >
+        create_manager_id,
+      </if>
+      <if test="updateManagerId != null" >
+        update_manager_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serviceItemsId != null" >
+        #{serviceItemsId,jdbcType=INTEGER},
+      </if>
+      <if test="guideOrderRequirementId != null" >
+        #{guideOrderRequirementId,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createManagerId != null" >
+        #{createManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="updateManagerId != null" >
+        #{updateManagerId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuideOrderRequirement" >
+    update t_service_items_has_t_guide_order_requirement
+    <set >
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createManagerId != null" >
+        create_manager_id = #{createManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="updateManagerId != null" >
+        update_manager_id = #{updateManagerId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where service_items_id = #{serviceItemsId,jdbcType=INTEGER}
+      and guide_order_requirement_id = #{guideOrderRequirementId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuideOrderRequirement" >
+    update t_service_items_has_t_guide_order_requirement
+    set is_delete = #{isDelete,jdbcType=TINYINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_manager_id = #{createManagerId,jdbcType=INTEGER},
+      update_manager_id = #{updateManagerId,jdbcType=INTEGER}
+    where service_items_id = #{serviceItemsId,jdbcType=INTEGER}
+      and guide_order_requirement_id = #{guideOrderRequirementId,jdbcType=INTEGER}
+  </update>
+</mapper>

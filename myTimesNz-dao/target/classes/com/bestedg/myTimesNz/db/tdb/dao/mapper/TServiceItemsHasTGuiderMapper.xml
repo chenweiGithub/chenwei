@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestedg.myTimesNz.db.tdb.dao.TServiceItemsHasTGuiderMapper" >
+  <resultMap id="BaseResultMap" type="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuider" >
+    <id column="service_items_id" property="serviceItemsId" jdbcType="INTEGER" />
+    <id column="guider_id" property="guiderId" jdbcType="INTEGER" />
+    <result column="update_tiem" property="updateTiem" jdbcType="TIMESTAMP" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    service_items_id, guider_id, update_tiem, creat_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuiderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_service_items_has_t_guider
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuiderKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_service_items_has_t_guider
+    where service_items_id = #{serviceItemsId,jdbcType=INTEGER}
+      and guider_id = #{guiderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuiderKey" >
+    delete from t_service_items_has_t_guider
+    where service_items_id = #{serviceItemsId,jdbcType=INTEGER}
+      and guider_id = #{guiderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuider" >
+    insert into t_service_items_has_t_guider (service_items_id, guider_id, update_tiem, 
+      creat_time)
+    values (#{serviceItemsId,jdbcType=INTEGER}, #{guiderId,jdbcType=INTEGER}, #{updateTiem,jdbcType=TIMESTAMP}, 
+      #{creatTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuider" >
+    insert into t_service_items_has_t_guider
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serviceItemsId != null" >
+        service_items_id,
+      </if>
+      <if test="guiderId != null" >
+        guider_id,
+      </if>
+      <if test="updateTiem != null" >
+        update_tiem,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serviceItemsId != null" >
+        #{serviceItemsId,jdbcType=INTEGER},
+      </if>
+      <if test="guiderId != null" >
+        #{guiderId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTiem != null" >
+        #{updateTiem,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuider" >
+    update t_service_items_has_t_guider
+    <set >
+      <if test="updateTiem != null" >
+        update_tiem = #{updateTiem,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where service_items_id = #{serviceItemsId,jdbcType=INTEGER}
+      and guider_id = #{guiderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServiceItemsHasTGuider" >
+    update t_service_items_has_t_guider
+    set update_tiem = #{updateTiem,jdbcType=TIMESTAMP},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP}
+    where service_items_id = #{serviceItemsId,jdbcType=INTEGER}
+      and guider_id = #{guiderId,jdbcType=INTEGER}
+  </update>
+</mapper>

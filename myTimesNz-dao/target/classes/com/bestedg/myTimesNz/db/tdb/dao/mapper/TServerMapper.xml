@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestedg.myTimesNz.db.tdb.dao.TServerMapper" >
+  <resultMap id="BaseResultMap" type="com.bestedg.myTimesNz.db.tdb.entity.TServer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="age_group" property="ageGroup" jdbcType="TINYINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="personal_photo" property="personalPhoto" jdbcType="VARCHAR" />
+    <result column="passport_photo" property="passportPhoto" jdbcType="VARCHAR" />
+    <result column="foreign_id_photo" property="foreignIdPhoto" jdbcType="VARCHAR" />
+    <result column="user_basic_id" property="userBasicId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="country_id" property="countryId" jdbcType="INTEGER" />
+    <result column="service_phone_number" property="servicePhoneNumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, realname, age_group, address, personal_photo, passport_photo, foreign_id_photo, 
+    user_basic_id, city_id, country_id, service_phone_number
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_server
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_server
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_server
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServer" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_server (realname, age_group, address, 
+      personal_photo, passport_photo, foreign_id_photo, 
+      user_basic_id, city_id, country_id, 
+      service_phone_number)
+    values (#{realname,jdbcType=VARCHAR}, #{ageGroup,jdbcType=TINYINT}, #{address,jdbcType=VARCHAR}, 
+      #{personalPhoto,jdbcType=VARCHAR}, #{passportPhoto,jdbcType=VARCHAR}, #{foreignIdPhoto,jdbcType=VARCHAR}, 
+      #{userBasicId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{countryId,jdbcType=INTEGER}, 
+      #{servicePhoneNumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServer" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_server
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="ageGroup != null" >
+        age_group,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="personalPhoto != null" >
+        personal_photo,
+      </if>
+      <if test="passportPhoto != null" >
+        passport_photo,
+      </if>
+      <if test="foreignIdPhoto != null" >
+        foreign_id_photo,
+      </if>
+      <if test="userBasicId != null" >
+        user_basic_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="servicePhoneNumber != null" >
+        service_phone_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="ageGroup != null" >
+        #{ageGroup,jdbcType=TINYINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="personalPhoto != null" >
+        #{personalPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="passportPhoto != null" >
+        #{passportPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="foreignIdPhoto != null" >
+        #{foreignIdPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="userBasicId != null" >
+        #{userBasicId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="servicePhoneNumber != null" >
+        #{servicePhoneNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServer" >
+    update t_server
+    <set >
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="ageGroup != null" >
+        age_group = #{ageGroup,jdbcType=TINYINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="personalPhoto != null" >
+        personal_photo = #{personalPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="passportPhoto != null" >
+        passport_photo = #{passportPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="foreignIdPhoto != null" >
+        foreign_id_photo = #{foreignIdPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="userBasicId != null" >
+        user_basic_id = #{userBasicId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="servicePhoneNumber != null" >
+        service_phone_number = #{servicePhoneNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bestedg.myTimesNz.db.tdb.entity.TServer" >
+    update t_server
+    set realname = #{realname,jdbcType=VARCHAR},
+      age_group = #{ageGroup,jdbcType=TINYINT},
+      address = #{address,jdbcType=VARCHAR},
+      personal_photo = #{personalPhoto,jdbcType=VARCHAR},
+      passport_photo = #{passportPhoto,jdbcType=VARCHAR},
+      foreign_id_photo = #{foreignIdPhoto,jdbcType=VARCHAR},
+      user_basic_id = #{userBasicId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      country_id = #{countryId,jdbcType=INTEGER},
+      service_phone_number = #{servicePhoneNumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
